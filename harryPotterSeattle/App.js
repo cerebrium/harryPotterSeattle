@@ -6,7 +6,27 @@ const App = () => {
   const [ userName, setUserName ] = useState('')
   const [ userEmail, setUserEmail ] = useState('')
 
-  console.log(userEmail)
+  // function to send to backend
+  const susbmitInfo = (e) => {
+    alert("route hasn't been hooked up yet")
+    fetch('https://10.1.7.200/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userName: userName,
+        userEmail: userEmail,
+      }),
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      setCurrWeather(responseJson)
+    })
+  }
+
+
   return (
    <ImageBackground
     source={titleBackground}
@@ -39,6 +59,7 @@ const App = () => {
         <Button
           title='Submit'
           color='gold'
+          onPress={susbmitInfo}
         ></Button>
       </View>
     </View>
