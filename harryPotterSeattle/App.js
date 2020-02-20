@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput, ImageBackground, Button } from 'reac
 import titleBackground from './cobro-titleScreen.jpg'
 
 const App = () => {
+  // state
   const [ userName, setUserName ] = useState('')
   const [ userEmail, setUserEmail ] = useState('')
   const [ user, setUser ] = useState(null)
@@ -10,7 +11,6 @@ const App = () => {
 
   // function to send to backend
   const susbmitInfo = (e) => {
-    alert('trying to hit backend.... decided to go home')
     fetch('http://10.1.7.200:3001/auth/signup', {
       method: 'POST',
       headers: {
@@ -28,10 +28,13 @@ const App = () => {
     })
   }
 
+  // conditional rendering for the login bit
   var userNameGotten
   if (user) {
     userNameGotten = (
-      <Text>Welcome {user.name}</Text>
+      <View style={styles.titleContainer}>
+        <Text>Welcome {user.name}</Text>
+      </View>
     )
   } else {
     userNameGotten = (
@@ -81,6 +84,7 @@ const App = () => {
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
