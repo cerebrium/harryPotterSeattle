@@ -18,7 +18,7 @@ db.on('error', (err) => {
 })
 
 // routes
-app.use('auth', require('./routes/auth'))
+app.use('/auth', require('./routes/auth'))
 
 // listening to 3001
 app.listen(process.env.PORT, () => {

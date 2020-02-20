@@ -4,7 +4,7 @@ const User = require('../models/user')
 
 // Storing user data in the database for team creation and checking
 router.post('/signup', (req, res) => {
-    console.log('hit this route')
+    console.log('hit this route', req.body)
     // console.log('inside the db posting route', req.body.email)
     // find user based on email
     User.findOne({ email: req.body.userEmail }, (err, user) => {
