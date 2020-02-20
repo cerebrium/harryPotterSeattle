@@ -5,30 +5,37 @@ import titleBackground from './cobro-titleScreen.jpg'
 const App = () => {
   const [ userName, setUserName ] = useState('')
   const [ userEmail, setUserEmail ] = useState('')
+  const [ user, setUser ] = useState(null)
+
 
   // function to send to backend
   const susbmitInfo = (e) => {
-    alert("route hasn't been hooked up yet")
-    fetch('https://10.1.7.200/', {
+    alert('trying to hit backend.... decided to go home')
+    fetch('http://10.1.7.200:3001/auth/signup', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName: userName,
-        userEmail: userEmail,
+        userName: `${userName}`,
+        userEmail: `${userEmail}`,
       }),
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      setCurrWeather(responseJson)
+      setUser(responseJson)
     })
   }
 
-
-  return (
-   <ImageBackground
+  var userNameGotten
+  if (user) {
+    userNameGotten = (
+      <Text>Welcome {user.name}</Text>
+    )
+  } else {
+    userNameGotten = (
+      <ImageBackground
     source={titleBackground}
     style={{
       height: '100%',
@@ -64,6 +71,13 @@ const App = () => {
       </View>
     </View>
    </ImageBackground>
+    )
+  }
+
+  return (
+    <>
+      {userNameGotten}
+    </>
   );
 };
 
