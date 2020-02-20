@@ -7,7 +7,7 @@ router.post('/signup', (req, res) => {
     console.log('hit this route', req.body)
     // console.log('inside the db posting route', req.body.email)
     // find user based on email
-    User.findOne({ email: req.body.userEmail }, (err, user) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
         // if user found wont write anything, else going to write to db
        if (user) {
            res.json(user)

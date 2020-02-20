@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { StyleSheet, View, Text, TextInput, ImageBackground, Button } from 'react-native';
 import titleBackground from './cobro-titleScreen.jpg'
+import { NativeRouter as Router, Route, Link } from "react-router-native";
 
 const App = () => {
   // state
@@ -8,9 +9,9 @@ const App = () => {
   const [ userEmail, setUserEmail ] = useState('')
   const [ user, setUser ] = useState(null)
 
-
   // function to send to backend
   const susbmitInfo = (e) => {
+    console.log('state: ' + userEmail + ' other comment')
     fetch('http://10.1.7.200:3001/auth/signup', {
       method: 'POST',
       headers: {
@@ -18,13 +19,14 @@ const App = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName: `${userName}`,
-        userEmail: `${userEmail}`,
+        name: userName,
+        email: userEmail,
       }),
     })
     .then((response) => response.json())
     .then((responseJson) => {
       setUser(responseJson)
+      console.log(responseJson)
     })
   }
 
@@ -32,48 +34,48 @@ const App = () => {
   var userNameGotten
   if (user) {
     userNameGotten = (
-      <View style={styles.titleContainer}>
-        <Text>Welcome {user.name}</Text>
-      </View>
+      <Router>
+        
+      </Router>
     )
   } else {
     userNameGotten = (
       <ImageBackground
-    source={titleBackground}
-    style={{
-      height: '100%',
-      width: '100%'
-    }}
-   >
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Potter Go</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Username:</Text>
-        <TextInput
-          style={styles.inputBoxes}
-          placeholder="NShankland"
-          setName={text => setUserName(text)}
-          userName={userName}
-        />
-        <Text style={styles.inputLabel}>Email:</Text>
-        <TextInput
-          style={styles.inputBoxes}
-          placeholder="Nshankland@gmail.com"
-          setEmail={text => setUserEmail(text)}
-          userEmail={userEmail}
-        />
-      </View>
-      <View style={styles.submitButton}>
-        <Button
-          title='Submit'
-          color='gold'
-          onPress={susbmitInfo}
-        ></Button>
-      </View>
-    </View>
-   </ImageBackground>
+        source={titleBackground}
+        style={{
+          height: '100%',
+          width: '100%'
+        }}
+      >
+        <View style={styles.container}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Potter Go</Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Username:</Text>
+            <TextInput
+              style={styles.inputBoxes}
+              placeholder="NShankland"
+              onChangeText={(text) => setUserName(text)}
+              userName={userName}
+            />
+            <Text style={styles.inputLabel}>Email:</Text>
+            <TextInput
+              style={styles.inputBoxes}
+              placeholder="Nshankland@gmail.com"
+              onChangeText={(text) => setUserEmail(text)}
+              userEmail={userEmail}
+            />
+          </View>
+          <View style={styles.submitButton}>
+            <Button
+              title='Submit'
+              color='gold'
+              onPress={susbmitInfo}
+            ></Button>
+          </View>
+        </View>
+      </ImageBackground>
     )
   }
 
