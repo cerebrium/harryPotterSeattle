@@ -6,6 +6,7 @@ const App = () => {
   const [ userName, setUserName ] = useState('')
   const [ userEmail, setUserEmail ] = useState('')
 
+  console.log(userEmail)
   return (
    <ImageBackground
     source={titleBackground}
@@ -22,14 +23,16 @@ const App = () => {
         <Text style={styles.inputLabel}>Username:</Text>
         <TextInput
           style={styles.inputBoxes}
-          setUserName={text => setUserName(text)}
-          value={userName}
+          placeholder="NShankland"
+          setName={text => setUserName(text)}
+          userName={userName}
         />
         <Text style={styles.inputLabel}>Email:</Text>
         <TextInput
           style={styles.inputBoxes}
-          setUserEmail={text => setUserEmail(text)}
-          value={userEmail}
+          placeholder="Nshankland@gmail.com"
+          setEmail={text => setUserEmail(text)}
+          userEmail={userEmail}
         />
       </View>
     </View>
@@ -51,7 +54,8 @@ const styles = StyleSheet.create({
     borderColor: 'gray', 
     width: 200,
     backgroundColor: 'lightgrey',
-    borderRadius: 15
+    borderRadius: 15,
+    textAlign: 'center'
   },
   inputContainer: {
     marginTop: 250,
