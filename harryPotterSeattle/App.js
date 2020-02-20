@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray', 
     width: 200,
     backgroundColor: 'lightgrey',
+    borderRadius: 15
   },
   inputContainer: {
     marginTop: 250,
