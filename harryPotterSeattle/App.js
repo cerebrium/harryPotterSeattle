@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TextInput, ImageBackground} from 'react-native';
+import { StyleSheet, View, Text, TextInput, ImageBackground, Button } from 'react-native';
 import titleBackground from './cobro-titleScreen.jpg'
 
 const App = () => {
@@ -35,6 +35,12 @@ const App = () => {
           userEmail={userEmail}
         />
       </View>
+      <View style={styles.submitButton}>
+        <Button
+          title='Submit'
+          color='gold'
+        ></Button>
+      </View>
     </View>
    </ImageBackground>
   );
@@ -58,12 +64,12 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   inputContainer: {
-    marginTop: 250,
+    marginTop: 200,
     height: '25%',
     width: '80%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#060E18',
     borderRadius: 15,
     opacity: .9
   },
@@ -78,9 +84,17 @@ const styles = StyleSheet.create({
     width: '80%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#060E18',
     borderRadius: 15,
     opacity: .9
+  },
+  submitButton: {
+    marginTop: 15,
+    backgroundColor: '#060E18',
+    opacity: .9,
+    height: 40,
+    width: 100,
+    borderRadius: 15
   }
 });
 
